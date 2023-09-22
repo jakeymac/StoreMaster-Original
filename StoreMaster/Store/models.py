@@ -20,13 +20,13 @@ class Store(models.Model):
         self.address = address
 
 class User(models.Model):
-    user_id = models.Autofield(primary_key=True)
+    user_id = models.AutoField(primary_key=True)
     user_type = models.CharField(max_length=25)
     first_name = models.CharField(max_length=35)
     last_name = models.CharField(max_length = 50)
     email_address = models.CharField(max_length = 75, null=True, blank=True)
     address = models.CharField(max_length=200,null=True,blank=True)
-    store_id = models.ForeignKey(Store,null=True,blank=True)
+    store_id = models.ForeignKey(Store,null=True,blank=True,on_delete=models.CASCADE)
     username = models.CharField(max_length=30,null=True,blank=True)
     password = models.CharField(max_length=30,null=True,blank=True)
     other_information = models.CharField(max_length = 1000,null=True,blank=True)
@@ -205,8 +205,8 @@ class Shipment(models.Model):
 class Purchase(models.Model):
     purchase_id = models.AutoField(primary_key = True)
     store_id = models.ForeignKey(Store, on_delete=models.CASCADE)
-    employee_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    customer_id = models.ForeignKey(User,on_delete=models.CASCADE)
+    employee_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="employee")
+    customer_id = models.ForeignKey(User,on_delete=models.CASCADE, related_name="customer")
     purchase_date = models.DateTimeField()
     purchase_total = models.FloatField() #could update this model for tax registration
     items = models.CharField(max_length=800)
@@ -255,7 +255,7 @@ class Order(models.Model):
     store_id = models.ForeignKey(Store, on_delete=models.CASCADE)
     customer_id = models.ForeignKey(User,on_delete=models.CASCADE)
     order_date = models.DateTimeField()
-    destination = models.CharField(max_lenght = 100, null = True, blank = True)
+    destination = models.CharField(max_length = 100, null = True, blank = True)
     order_total = models.FloatField()
     items = models.CharField(max_length = 800)
 
