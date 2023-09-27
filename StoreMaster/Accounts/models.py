@@ -6,7 +6,7 @@ class UserInfo(models.Model):
     user = models.OneToOneField(User,primary_key=True,on_delete=models.CASCADE)
     first_name = models.CharField(max_length=35)
     last_name = models.CharField(max_length = 50)
-    email_address = models.CharField(max_length = 75, null=True, blank=True)
+    email_address = models.CharField(max_length = 75, null=True, blank=True,unique=True)
     address = models.CharField(max_length=200,null=True,blank=True)
     store_id = models.ForeignKey(Store,null=True,blank=True,on_delete=models.CASCADE)
     username = models.CharField(max_length=30,null=True,blank=True,unique=True)
