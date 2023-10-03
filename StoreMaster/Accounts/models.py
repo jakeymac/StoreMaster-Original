@@ -77,6 +77,8 @@ class UserInfo(models.Model):
     def set_birthday(self, birthday):
         self.birthday = birthday
 
+#DELETE ME
+
 class AdminInfo(UserInfo):
     pass
 
@@ -88,4 +90,3 @@ class EmployeeInfo(UserInfo):
 
 class CustomerInfo(UserInfo):
     pass
-

@@ -9,35 +9,16 @@
     <form action="{% url 'Accounts:register_user' %}" method="POST">
         {% csrf_token %}
 
-        <label for="first_name">First Name:</label>
-        <input type="text" id="first_name" name="first_name" required><br><br>
-
-        <label for="last_name">First Name:</label>
-        <input type="text" id="last_name" name="last_name" required><br><br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-
-        <label for="store_selector">Store:</label>
-        <select id="store_selector" name="store_selector">
-            {% for store in stores %}
-                <option value="{{store}}">{{store}}</option>
-            {% endfor %}
-        </select><br><br>
-
-
-        <label for="user_type_selector">User Type:</label>
-        <select id="user_type_selector" name="user_type_selector">
-            <option value ="admin">Admin</option>
-            <option value="manager">Manager</option>
-            <option vlaue="employee" selected>Employee</option>
-        </select><br><br>
+        {{ form.first_name.label_tag }} {{ form.first_name }} <br>
+        {{ form.last_name.label_tag }} {{ form.last_name }} <br>
+        {{form.email_address.label_tag }} {{ form.email_address }} <br>
+        {{ form.address.label_tag }} {{ form.address }} <br>
+        {{ form.username.label_tag }} {{ form.username }} <br>
+        {{ form.password.label_tag}} {{ form.password }} <br>
+        {{ form.other_information.label_tag}} {{ form.other_information }} <br>
+        {{ form.birthday.label_tag }} {{ form.birthday }} <br>
+        {{ form.store_id.label_tag }} {{ form.store_id }} <br>
+        {{ form.user_type.label_tag }} {{ form.user_type }} <br>
 
         <button type="submit">Register</button>
     </form>
